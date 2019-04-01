@@ -1,17 +1,19 @@
 
 const checkInButton = document.getElementById("check-in");
 const checkOutButton = document.getElementById("check-out");
-const timeTable = document.querySelector(".timetable");
+const timeTable = document.querySelector("table");
 
 //function to make date object readable
 function understandTime(time) {
 
-    let date = /(\w\w\w) (\d\d) (\d\d\d\d)/i.exec(time);
+    let date = /(\w\w\w) (\d\d) \d\d(\d\d)/i.exec(time);
     //year is date[3], month is date[1] and current day is date[2]
-    let timeOfDay = /(\d\d):(\d\d)/.exec(time);
+    let timeOfDay = /\d\d:\d\d/.exec(time);
     //hour is timeOfDay[1], minutes is timeOfDay[2]
 
-    return {date, timeOfDay};
+    let newDate = date[2] + "." + date[1] + "." + date[3];
+
+    return [newDate, timeOfDay[0]];
 };
 
 function checkIn() {
@@ -30,12 +32,25 @@ function checkOut() {
     //{"Time": currentTime, "ToDo": todo, "done": true}
 };
 
-function addCheckInTotable(time) {
-    let checkInTime = document.createElement("h2")
-    let textnode = document.createTextNode("Tid: " + time[0] + "\nOppgave: " + time[1]);
+function addCheckInTotable(inputArray) {
+
+    //inputArray har formen [currentTime, Todo], gjør currentTime litt bedre
+    let time = understandTime(inputArray[0]);
+
+    let newRow = timeTable.insertRow(1);
+    let timeCell = newRow.insertCell(0);
+    let checkInCell = newRow.insertCell(1);
+    let blankCell1 = newRow.insertCell(2);
+    let blankCell2 = newRow.insertCell(3);
+    let assignementCell = newRow.insertCell(4);
+
+    let timeNode = document.createTextNode(time[0]); //dd.mm.yy
+    let checkInNode = document.createTextNode(time[1]); //hh:mm
+    let assignmentNode = document.createTextNode(inputArray[1]);
     
-    checkInTime.appendChild(textnode);
-    timeTable.appendChild(checkInTime);
+    timeCell.appendChild(timeNode);
+    checkInCell.appendChild(checkInNode);
+    assignementCell.appendChild(assignmentNode);
 };
 
 
