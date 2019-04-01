@@ -60,7 +60,7 @@ function addCheckOutToTable (inputArray) {
     let time = understandTime(inputArray[0]);
 
     let checkOutCell = timeTable.rows[1].cells[2];
-    let timeSpentCell = timeTable.rows[1].cells[2];
+    let timeSpentCell = timeTable.rows[1].cells[3];
 
     let checkOutNode = document.createTextNode(time[1]); //hh:mm
 

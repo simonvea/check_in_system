@@ -4,13 +4,14 @@ The following functionalities are needed:
 1. a check in button that logs the time it is clicked - DONE
 2. a check out button that logs the time it is clicked - DONE
 3. disable check-in button if there is no check out.
-4. a check that the work that was supposed to be done is the one that is checked out (cross-checked with check in)
-5. need ability to change checkout time if needed
-6. a table that shows check in and check out times, with the work that is being done (also the recent work that is finished) - DONE
-7. need to be connected to a database. I'm thinking firestore.
+4. calculation of time spent
+5. a check that the work that was supposed to be done is the one that is checked out (cross-checked with check in)
+6. need ability to change checkout time if needed
+7. a table that shows check in and check out times, with the work that is being done (also the recent work that is finished) - DONE
+8. need to be connected to a database. I'm thinking firestore.
 
 The following functionalities are wanted:
 1. a todo-list, which shows what is supposed to be done during the day (this could be done as an aside to the right of the page)
 2. functionalities to edit and mark todos as done
-3. when clicking check in/out you can easily choose commonly used work description
+3. when clicking check in/out you can easily choose commonly used work descriptions
 
