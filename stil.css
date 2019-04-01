@@ -1,6 +1,9 @@
+main {
+    margin-top: 100px;
+}
 .buttons {
     margin: auto;
-    width: 160px;
+    width: 152px;
     border: 3px solid green;
     padding: 10px;
 }
@@ -12,4 +15,16 @@
     padding: 10px;
     background-color: aqua;
     display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 30px;
+}
+
+th,
+td {
+    border: 1px solid black;
+    padding: 10px 15px;
 }
