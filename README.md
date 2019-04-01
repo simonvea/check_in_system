@@ -3,8 +3,8 @@ This is an attempt to create a check in system using html and js.
 The following functionalities are needed:
 1. a check in button that logs the time it is clicked - DONE
 2. a check out button that logs the time it is clicked - DONE
-3. disable check-in button if there is no check out.
-4. calculation of time spent
+3. disable check-in button if there is no check out. - DONE
+4. calculation of time spent - DONE
 5. a check that the work that was supposed to be done is the one that is checked out (cross-checked with check in)
 6. need ability to change checkout time if needed
 7. a table that shows check in and check out times, with the work that is being done (also the recent work that is finished) - DONE

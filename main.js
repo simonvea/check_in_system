@@ -28,8 +28,6 @@ function checkOut() {
     let currentTime = new Date();
     let todo = prompt("Hva har du gjort?");  
 
-    
-
     return [currentTime, todo];
     //{"Time": currentTime, "ToDo": todo, "done": true}
 };
@@ -60,16 +58,31 @@ function addCheckOutToTable (inputArray) {
     let time = understandTime(inputArray[0]);
 
     let checkOutCell = timeTable.rows[1].cells[2];
-    let timeSpentCell = timeTable.rows[1].cells[3];
+    let timeSpentCell = timeTable.rows[1].cells[3]; 
 
     let checkOutNode = document.createTextNode(time[1]); //hh:mm
+    let timeSpentNode = document.createTextNode(calculateWorkTime(time[1]));
 
     checkOutCell.appendChild(checkOutNode);
+    timeSpentCell.appendChild(timeSpentNode);
 };
+
+function calculateWorkTime (checkOutTime) {
+
+    let checkInTime = /(\d\d):(\d\d)/.exec(timeTable.rows[1].cells[1].innerHTML);
+    let checkOut = /(\d\d):(\d\d)/.exec(checkOutTime);
+
+    let hoursSpent = checkOut[1] - checkInTime[1];
+    let minutesSpent = checkOut[2] - checkInTime[2];
+
+    if (hoursSpent == 0) return minutesSpent + " minutter";
+    
+    return hoursSpent + " timer og " + minutesSpent + " minutter";
+}
 
 //eventlisteners for buttons
 checkInButton.addEventListener("click", () => {
-    //if(no check out) {return}; <-- need function to disable click if there is no check-out time
+    if(timeTable.rows[1].cells[2].innerHTML == "") return; //if checkout cell is emtpy disables possibility for new check in
     addCheckInTotable(checkIn())
 });
 checkOutButton.addEventListener("click", () => {
