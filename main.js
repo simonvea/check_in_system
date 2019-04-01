@@ -28,6 +28,8 @@ function checkOut() {
     let currentTime = new Date();
     let todo = prompt("Hva har du gjort?");  
 
+    
+
     return [currentTime, todo];
     //{"Time": currentTime, "ToDo": todo, "done": true}
 };
@@ -55,5 +57,8 @@ function addCheckInTotable(inputArray) {
 
 
 //eventlisteners for buttons
-checkInButton.addEventListener("click", () => addCheckInTotable(checkIn()));
+checkInButton.addEventListener("click", () => {
+    //if(no check out) {return};
+    addCheckInTotable(checkIn())
+});
 checkOutButton.addEventListener("click", checkOut);
