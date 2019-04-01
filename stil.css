@@ -1,0 +1,15 @@
+.buttons {
+    margin: auto;
+    width: 160px;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.button {
+    margin: auto;
+    width: 50px;
+    border: 2px solid black;
+    padding: 10px;
+    background-color: aqua;
+    display: inline-block;
+}
