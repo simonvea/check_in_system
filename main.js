@@ -55,10 +55,23 @@ function addCheckInTotable(inputArray) {
     assignementCell.appendChild(assignmentNode);
 };
 
+function addCheckOutToTable (inputArray) {
+
+    let time = understandTime(inputArray[0]);
+
+    let checkOutCell = timeTable.rows[1].cells[2];
+    let timeSpentCell = timeTable.rows[1].cells[2];
+
+    let checkOutNode = document.createTextNode(time[1]); //hh:mm
+
+    checkOutCell.appendChild(checkOutNode);
+};
 
 //eventlisteners for buttons
 checkInButton.addEventListener("click", () => {
-    //if(no check out) {return};
+    //if(no check out) {return}; <-- need function to disable click if there is no check-out time
     addCheckInTotable(checkIn())
 });
-checkOutButton.addEventListener("click", checkOut);
+checkOutButton.addEventListener("click", () => {
+    addCheckOutToTable(checkOut());
+});
