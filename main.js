@@ -46,7 +46,7 @@ function addCheckInTotable(inputArray) {
 
     let timeNode = document.createTextNode(time[0]); //dd.mm.yy
     let checkInNode = document.createTextNode(time[1]); //hh:mm
-    let assignmentNode = document.createTextNode(inputArray[1]);
+    let assignmentNode = document.createTextNode("Planlagt: " + inputArray[1]);
     
     timeCell.appendChild(timeNode);
     checkInCell.appendChild(checkInNode);
@@ -58,13 +58,16 @@ function addCheckOutToTable (inputArray) {
     let time = understandTime(inputArray[0]);
 
     let checkOutCell = timeTable.rows[1].cells[2];
-    let timeSpentCell = timeTable.rows[1].cells[3]; 
+    let timeSpentCell = timeTable.rows[1].cells[3];
+    let assignementCell = timeTable.rows[1].cells[4];
 
     let checkOutNode = document.createTextNode(time[1]); //hh:mm
     let timeSpentNode = document.createTextNode(calculateWorkTime(time[1]));
+    //let assignmentNode = document.createTextNode("Gjort: " + inputArray[1]);
 
     checkOutCell.appendChild(checkOutNode);
     timeSpentCell.appendChild(timeSpentNode);
+    //assignementCell.appendChild(assignmentNode);
 };
 
 function calculateWorkTime (checkOutTime) {
