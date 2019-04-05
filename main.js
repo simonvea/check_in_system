@@ -6,14 +6,12 @@ const timeTable = document.querySelector("table");
 //function to make date object readable
 function understandTime(time) {
 
-    let date = /(\w\w\w) (\d\d) \d\d(\d\d)/i.exec(time);
-    //year is date[3], month is date[1] and current day is date[2]
-    let timeOfDay = /\d\d:\d\d/.exec(time);
-    //hour is timeOfDay[1], minutes is timeOfDay[2]
+    let year = String(time.getFullYear());
 
-    let newDate = date[2] + "." + date[1] + "." + date[3];
+    let newDate = String(time.getDate()).padStart(2,0) + "." + String(time.getMonth() + 1).padStart(2,0) + "." + year[2] + year[3];
+    let timeOfDay = String(time.getHours()).padStart(2,0) + ":" + String(time.getMinutes()).padStart(2,0);
 
-    return [newDate, timeOfDay[0]];
+    return [newDate, timeOfDay];
 };
 
 function checkIn() {
