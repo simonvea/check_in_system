@@ -91,10 +91,18 @@ function calculateWorkTime (checkOutTime) {
     let hoursSpent = checkOut[1] - checkInTime[1];
     let minutesSpent = checkOut[2] - checkInTime[2];
 
-    if (hoursSpent == 0) return minutesSpent + " minutter";
+    let returnString = "";
+
+    if (minutesSpent == 1) {returnString = minutesSpent + "minutt";
+    } else {returnString = minutesSpent + " minutter";};  
+
+    if (hoursSpent == 0) {return returnString};
     
-    return hoursSpent + " timer og " + minutesSpent + " minutter";
-}
+    if (hoursSpent == 1) {returnString = hoursSpent + "time og" + returnString;
+    } else {returnString = hoursSpent + " timer og " + returnString}
+    
+    return returnString;
+};
 
 //eventlisteners for buttons
 checkInButton.addEventListener("click", () => {
