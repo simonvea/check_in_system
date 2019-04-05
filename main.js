@@ -93,12 +93,12 @@ function calculateWorkTime (checkOutTime) {
 
     let returnString = "";
 
-    if (minutesSpent == 1) {returnString = minutesSpent + "minutt";
+    if (minutesSpent == 1) {returnString = minutesSpent + " minutt";
     } else {returnString = minutesSpent + " minutter";};  
 
     if (hoursSpent == 0) {return returnString};
     
-    if (hoursSpent == 1) {returnString = hoursSpent + "time og" + returnString;
+    if (hoursSpent == 1) {returnString = hoursSpent + " time og " + returnString;
     } else {returnString = hoursSpent + " timer og " + returnString}
     
     return returnString;
