@@ -63,11 +63,13 @@ function addCheckOutToTable (inputArray) {
 
     let checkOutNode = document.createTextNode(time[1]); //hh:mm
     let timeSpentNode = document.createTextNode(calculateWorkTime(time[1]));
-    //let assignmentNode = document.createTextNode("Gjort: " + inputArray[1]);
+    let br = document.createElement("br");
+    let assignmentNode = document.createTextNode("Gjort: " + inputArray[1]);
 
     checkOutCell.appendChild(checkOutNode);
     timeSpentCell.appendChild(timeSpentNode);
-    //assignementCell.appendChild(assignmentNode);
+    assignementCell.appendChild(br);
+    assignementCell.appendChild(assignmentNode);
 };
 
 function calculateWorkTime (checkOutTime) {
