@@ -42,12 +42,22 @@ function addCheckInTotable(inputArray) {
     let blankCell2 = newRow.insertCell(3);
     let assignementCell = newRow.insertCell(4);
 
+    //adding time element with the current time as attribute
+    let timeCellTime = document.createElement("time");
+    let checkInTime = document.createElement("time");
+
+    //gives wrong format on the datetime value, and possibly not needed?
+    //timeCellTime.setAttribute("datetime", inputArray[0]);
+    //checkInTime.setAttribute("datetime", inputArray[0]);
+
     let timeNode = document.createTextNode(time[0]); //dd.mm.yy
     let checkInNode = document.createTextNode(time[1]); //hh:mm
     let assignmentNode = document.createTextNode("Planlagt: " + inputArray[1]);
     
-    timeCell.appendChild(timeNode);
-    checkInCell.appendChild(checkInNode);
+    timeCellTime.appendChild(timeNode);
+    timeCell.appendChild(timeCellTime);
+    checkInTime.appendChild(checkInNode);
+    checkInCell.appendChild(checkInTime);
     assignementCell.appendChild(assignmentNode);
 };
 
@@ -64,7 +74,10 @@ function addCheckOutToTable (inputArray) {
     let br = document.createElement("br");
     let assignmentNode = document.createTextNode("Gjort: " + inputArray[1]);
 
-    checkOutCell.appendChild(checkOutNode);
+    let checkOutTime = document.createElement("time");
+
+    checkOutTime.appendChild(checkOutNode);
+    checkOutCell.appendChild(checkOutTime);
     timeSpentCell.appendChild(timeSpentNode);
     assignementCell.appendChild(br);
     assignementCell.appendChild(assignmentNode);
