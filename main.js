@@ -110,5 +110,6 @@ checkInButton.addEventListener("click", () => {
     addCheckInTotable(checkIn())
 });
 checkOutButton.addEventListener("click", () => {
+    if(!timeTable.rows[1].cells[2].innerHTML == "") return; //if checkout cell has content, disables possibility for new checkout
     addCheckOutToTable(checkOut());
 });
