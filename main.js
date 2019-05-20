@@ -1,7 +1,27 @@
 
 const checkInButton = document.getElementById("check-in");
 const checkOutButton = document.getElementById("check-out");
-const timeTable = document.querySelector("table");
+
+function checkIn() {
+    if(work.length < 1 || work[work.length-1].checkOut != 0) {
+        const time = new Date;
+        const task = prompt("Hva skal du gjøre?");
+        work.push({"checkIn": time, "task": task, "checkOut": 0, "timeSpent": 0});
+        console.log("sjekket inn!");
+    } else {
+        alert("Du må sjekke ut først!");
+    }
+}
+
+function checkOut() {
+    if(work[work.length-1].checkOut == 0) {
+        work[work.length-1].checkOut = new Date;
+        work[work.length-1].timeSpent = calculateWorkTime(work[work.length-1].checkIn, work[work.length-1].checkOut);
+        console.log("Sjekket ut!");
+    } else {
+        alert("Du må sjekke inn først!");
+    }
+}
 
 //function to make date object readable
 function understandTime(time) {
@@ -14,79 +34,10 @@ function understandTime(time) {
     return [newDate, timeOfDay];
 };
 
-function checkIn() {
-    let currentTime = new Date();
-    let todo = prompt("Hva skal du gjøre?");
+function calculateWorkTime (start, end) {
 
-    return [currentTime, todo];
-    //{"Time": currentTime, "ToDo": todo, "done": false}
-};
-
-function checkOut() {
-    let currentTime = new Date();
-    let todo = prompt("Hva har du gjort?");  
-
-    return [currentTime, todo];
-    //{"Time": currentTime, "ToDo": todo, "done": true}
-};
-
-function addCheckInTotable(inputArray) {
-
-    //inputArray har formen [currentTime, Todo], gjør currentTime litt bedre
-    let time = understandTime(inputArray[0]);
-
-    let newRow = timeTable.insertRow(1);
-    let timeCell = newRow.insertCell(0);
-    let checkInCell = newRow.insertCell(1);
-    let blankCell1 = newRow.insertCell(2);
-    let blankCell2 = newRow.insertCell(3);
-    let assignementCell = newRow.insertCell(4);
-
-    //adding time element with the current time as attribute
-    let timeCellTime = document.createElement("time");
-    let checkInTime = document.createElement("time");
-
-    //gives wrong format on the datetime value, and possibly not needed?
-    //timeCellTime.setAttribute("datetime", inputArray[0]);
-    //checkInTime.setAttribute("datetime", inputArray[0]);
-
-    let timeNode = document.createTextNode(time[0]); //dd.mm.yy
-    let checkInNode = document.createTextNode(time[1]); //hh:mm
-    let assignmentNode = document.createTextNode("Planlagt: " + inputArray[1]);
-    
-    timeCellTime.appendChild(timeNode);
-    timeCell.appendChild(timeCellTime);
-    checkInTime.appendChild(checkInNode);
-    checkInCell.appendChild(checkInTime);
-    assignementCell.appendChild(assignmentNode);
-};
-
-function addCheckOutToTable (inputArray) {
-
-    let time = understandTime(inputArray[0]);
-
-    let checkOutCell = timeTable.rows[1].cells[2];
-    let timeSpentCell = timeTable.rows[1].cells[3];
-    let assignementCell = timeTable.rows[1].cells[4];
-
-    let checkOutNode = document.createTextNode(time[1]); //hh:mm
-    let timeSpentNode = document.createTextNode(calculateWorkTime(time[1]));
-    let br = document.createElement("br");
-    let assignmentNode = document.createTextNode("Gjort: " + inputArray[1]);
-
-    let checkOutTime = document.createElement("time");
-
-    checkOutTime.appendChild(checkOutNode);
-    checkOutCell.appendChild(checkOutTime);
-    timeSpentCell.appendChild(timeSpentNode);
-    assignementCell.appendChild(br);
-    assignementCell.appendChild(assignmentNode);
-};
-
-function calculateWorkTime (checkOutTime) {
-
-    let checkInTime = /(\d\d):(\d\d)/.exec(timeTable.rows[1].cells[1].innerHTML);
-    let checkOut = /(\d\d):(\d\d)/.exec(checkOutTime);
+    let checkInTime = /(\d\d):(\d\d)/.exec(start);
+    let checkOut = /(\d\d):(\d\d)/.exec(end);
 
     let hoursSpent = checkOut[1] - checkInTime[1];
     let minutesSpent = checkOut[2] - checkInTime[2];
@@ -105,11 +56,5 @@ function calculateWorkTime (checkOutTime) {
 };
 
 //eventlisteners for buttons
-checkInButton.addEventListener("click", () => {
-    if(timeTable.rows[1].cells[2].innerHTML == "") return; //if checkout cell is emtpy disables possibility for new check in
-    addCheckInTotable(checkIn())
-});
-checkOutButton.addEventListener("click", () => {
-    if(!timeTable.rows[1].cells[2].innerHTML == "") return; //if checkout cell has content, disables possibility for new checkout
-    addCheckOutToTable(checkOut());
-});
+checkInButton.addEventListener("click", checkIn);
+checkOutButton.addEventListener("click", checkOut);
