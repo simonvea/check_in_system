@@ -8,6 +8,7 @@ function checkIn() {
         const task = prompt("Hva skal du gjøre?");
         work.push({"checkIn": time, "task": task, "checkOut": 0, "timeSpent": 0});
         console.log("sjekket inn!");
+        updateCurrentTable(work[work.length-1]);
     } else {
         alert("Du må sjekke ut først!");
     }
@@ -18,6 +19,9 @@ function checkOut() {
         work[work.length-1].checkOut = new Date;
         work[work.length-1].timeSpent = calculateWorkTime(work[work.length-1].checkIn, work[work.length-1].checkOut);
         console.log("Sjekket ut!");
+        currentTaskTable.deleteRow(1);
+        currentTaskTable.style.display = "none";
+        createNewTaskRow(work[work.length-1]);
     } else {
         alert("Du må sjekke inn først!");
     }
