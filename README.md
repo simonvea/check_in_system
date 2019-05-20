@@ -1,4 +1,4 @@
-This is an attempt to create a check in system using html and js.
+This is an attempt to create a check in system using vanilla JavaScript and Firebase.
 
 The following functionalities are needed:
 1. a check in button that logs the time it is clicked - DONE
@@ -10,7 +10,7 @@ The following functionalities are needed:
 7. need ability to change checkout time if needed
     Done via forms?
 8. a table that shows check in and check out times, with the work that is being done (also the recent work that is finished) - DONE
-9. need to be connected to a database. I'm thinking firestore.
+9. need to be connected to a database. I'm thinking firestore. - DONE
 
 The following functionalities are wanted:
 1. add "<time>" element to relevant cells. - DONE
