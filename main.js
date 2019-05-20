@@ -2,15 +2,22 @@
 const checkInButton = document.getElementById("check-in");
 const checkOutButton = document.getElementById("check-out");
 
+function addTempTextBeneathButtons(text) {
+    const textNode = document.createTextNode(text);
+    const buttonsDiv = document.querySelector(".buttons");
+    buttonsDiv.appendChild(textNode);
+    setTimeout(() => buttonsDiv.removeChild(textNode), 5000);
+}
+
 function checkIn() {
     if(work.length < 1 || work[work.length-1].checkOut != 0) {
         const time = new Date;
         const task = prompt("Hva skal du gjøre?");
         work.push({"checkIn": time, "task": task, "checkOut": 0, "timeSpent": 0});
-        console.log("sjekket inn!");
+        addTempTextBeneathButtons("sjekket inn!");
         updateCurrentTable(work[work.length-1]);
     } else {
-        alert("Du må sjekke ut først!");
+        addTempTextBeneathButtons("Du må sjekke ut først!");
     }
 }
 
@@ -18,13 +25,13 @@ function checkOut() {
     if(work[work.length-1].checkOut == 0) {
         work[work.length-1].checkOut = new Date;
         work[work.length-1].timeSpent = calculateWorkTime(work[work.length-1].checkIn, work[work.length-1].checkOut);
-        console.log("Sjekket ut!");
+        addTempTextBeneathButtons("Sjekket ut!");
         currentTaskTable.deleteRow(1);
         currentTaskTable.style.display = "none";
         createNewTaskRow(work[work.length-1]);
         db.collection("tasks").add(work[work.length - 1]).catch(function(error) {console.error("Error adding document: ", error)});
     } else {
-        alert("Du må sjekke inn først!");
+        addTempTextBeneathButtons("Du må sjekke inn først!");
     }
 }
 
