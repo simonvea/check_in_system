@@ -22,6 +22,7 @@ function checkOut() {
         currentTaskTable.deleteRow(1);
         currentTaskTable.style.display = "none";
         createNewTaskRow(work[work.length-1]);
+        db.collection("tasks").add(work[work.length - 1]).catch(function(error) {console.error("Error adding document: ", error)});
     } else {
         alert("Du må sjekke inn først!");
     }

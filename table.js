@@ -3,7 +3,16 @@ const oldTasksTable = document.querySelector("#timetable");
 const currentTaskTable = document.querySelector("#currentTask");
 const work = [];
 
-//createTasksTable();
+//get db from firebase
+tasksRef.get().then((querySnapshot) => {
+    querySnapshot.forEach(doc => {
+        const task = doc.data();
+        task.checkIn = task.checkIn.toDate();
+        task.checkOut = task.checkOut.toDate();
+        work.push(task);
+        createNewTaskRow(task);
+    }
+)});
 
 function createTasksTable() {
     work.forEach(task => createNewTaskRow(task))
