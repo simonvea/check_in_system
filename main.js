@@ -1,6 +1,7 @@
 
-const checkInButton = document.getElementById("check-in");
+const showCheckIn = document.getElementById("show-check-in");
 const checkOutButton = document.getElementById("check-out");
+const checkInButton = document.getElementById("check-in");
 
 function addTempTextBeneathButtons(text) {
     const textNode = document.createTextNode(text);
@@ -13,6 +14,7 @@ function checkIn() {
     if(work.length < 1 || work[work.length-1].checkOut != 0) {
         const time = new Date;
         const task = prompt("Hva skal du gjøre?");
+        if(task == "null") return;
         work.push({"checkIn": time, "task": task, "checkOut": 0, "timeSpent": 0});
         addTempTextBeneathButtons("sjekket inn!");
         updateCurrentTable(work[work.length-1]);
@@ -68,5 +70,6 @@ function calculateWorkTime (start, end) {
 };
 
 //eventlisteners for buttons
+showCheckIn.addEventListener("click", );
 checkInButton.addEventListener("click", checkIn);
 checkOutButton.addEventListener("click", checkOut);

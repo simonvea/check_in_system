@@ -6,24 +6,46 @@
         <link type="text/css" rel="stylesheet" href="stil.css">
     </head>
     <body>
+        <header>
+            <h1>Arbeidslogg</h1>
+        </header>
         <main>
-            <section class="buttons">
-                <div class="button" id="check-in">Sjekk inn</div>
-                <div class="button" id="check-out">Sjekk ut</div>
+            <section class="controls">
+                <button class="button" id="show-check-in">Sjekk inn</button>
+                <button class="button" id="check-out">Sjekk ut</button>
             </section>
-            <section class="currentTask">
-                <h2>Nåværende oppgave: </h2>
-                <table id="currentTask" style="display: none">
+            <section class="check-in">
+                <form>
+                    <label> Oppgave: 
+                        <input type=text name="task">
+                    </label>
+                    <button type="sumbit" id="check-in" class="submit" class="button">Sjekk inn</button>
+                </form>
+            </section>
+            <section class="current-task-container">
+                <h2>Nåværende oppgave:</h2>
+                <table id="current-task">
                     <thead>
                         <tr>
                             <th scope="col">Dato</th>
                             <th scope="col">Sjekket inn</th>
                             <th scope="col">Oppgave</th>
+                            <th scope="col">Slett </th>
                             <!-- <th scope="col">Arbeidstid</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <!-- <template> -->
+                            <tr>
+                                <td>Dato</td>
+                                <td>10:53</td>
+                                <td>blabla</td>
+                                <td>
+                                    <!-- <button type="button" id="check-out" class="button">Sjekk ut</button> -->
+                                    <button class="delete">Slett</button>
+                                </td>
+                            </tr>
+                        <!-- </template> -->
                     </tbody>
                 </table>
 
@@ -41,15 +63,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <!-- <template> -->
+                            <tr>
+                                <td>2015</td>
+                                <td>10:45</td>
+                                <td>11:30</td>
+                                <td>30 minutter</td>
+                                <td>lage ett sjekk-inn system</td>
+                            </tr>
+                        <!-- </template> -->
                     </tbody>
                 </table>
             </section>
         </main>
     </body>
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
     <script src="firebaseConfig.js"></script>
     <script src="table.js"></script>
-    <script src="main.js"></script>
+    <script src="main.js"></script> -->
 </html>

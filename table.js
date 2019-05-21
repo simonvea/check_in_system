@@ -11,11 +11,11 @@ tasksRef.get().then((querySnapshot) => {
         task.checkOut = task.checkOut.toDate();
         work.push(task);
     });
+    work.sort((a, b) => a.checkIn > b.checkIn ? 1 : -1);
     createTasksTable();
 });
 
 function createTasksTable() {
-    work.sort((a, b) => a.checkIn > b.checkIn ? 1 : -1);
     work.forEach(task => createNewTaskRow(task))
 }
 
