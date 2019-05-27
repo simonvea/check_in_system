@@ -1,5 +1,5 @@
 
-const showCheckIn = document.getElementById("show-check-in");
+const showCheckIn = document.getElementById("toggle-check-in");
 const checkOutButton = document.getElementById("check-out");
 const checkInButton = document.getElementById("check-in");
 
@@ -69,7 +69,16 @@ function calculateWorkTime (start, end) {
     return returnString;
 };
 
+function toggleActiveCheckIn() {
+    const checkInSection = document.querySelector(".check-in");
+    if(checkInSection.classList.contains("active")) {
+        checkInSection.classList.remove("active");
+    } else {
+        checkInSection.classList.add("active");
+    }
+}
+
 //eventlisteners for buttons
-showCheckIn.addEventListener("click", );
+showCheckIn.addEventListener("click", toggleActiveCheckIn);
 checkInButton.addEventListener("click", checkIn);
 checkOutButton.addEventListener("click", checkOut);
