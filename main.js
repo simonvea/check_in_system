@@ -48,13 +48,15 @@ function understandTime(time) {
     return [newDate, timeOfDay];
 };
 
+
 function calculateWorkTime (start, end) {
 
-    let checkInTime = /(\d\d):(\d\d)/.exec(start);
-    let checkOut = /(\d\d):(\d\d)/.exec(end);
-
-    let hoursSpent = checkOut[1] - checkInTime[1];
-    let minutesSpent = checkOut[2] - checkInTime[2];
+    let timeSpentSeconds = (end - start)/1000;
+    let minutesSpent = Math.trunc(timeSpentSeconds/60);
+    let hoursSpent = Math.trunc(minutesSpent / 60);
+    if(hoursSpent != 0) {
+        minutesSpent = minutesSpent - (60*hoursSpent);
+    }
 
     let returnString = "";
 
@@ -80,5 +82,8 @@ function toggleActiveCheckIn() {
 
 //eventlisteners for buttons
 showCheckIn.addEventListener("click", toggleActiveCheckIn);
-checkInButton.addEventListener("click", checkIn);
+checkInButton.addEventListener("click", () => {
+    //checkIn();
+    toggleActiveCheckIn();
+}); //checkIn
 checkOutButton.addEventListener("click", checkOut);

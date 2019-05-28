@@ -64,10 +64,10 @@ section {
     width: 300px;
     height: 100px;
     margin: auto;
-    transition: all 0.5s ease-out;
+    transition: all 0.5s ease-in;
     transform: translateY(-100%);
     opacity: 0;
-    z-index: -1000;
+    z-index: -1;
 }
 
 form {
@@ -76,6 +76,10 @@ form {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.current-task-container {
+    display: none;
 }
 
 /* 
