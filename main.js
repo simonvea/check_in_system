@@ -2,6 +2,7 @@
 const showCheckIn = document.getElementById("toggle-check-in");
 const checkOutButton = document.getElementById("check-out");
 const checkInButton = document.getElementById("check-in");
+const logg = [];
 
 function addTempTextBeneathButtons(text) {
     const textNode = document.createTextNode(text);
@@ -10,7 +11,9 @@ function addTempTextBeneathButtons(text) {
     setTimeout(() => buttonsDiv.removeChild(textNode), 5000);
 }
 
-function checkIn() {
+function checkIn(e) {
+    e.preventDefault();
+    
     if(work.length < 1 || work[work.length-1].checkOut != 0) {
         const time = new Date;
         const task = prompt("Hva skal du gjøre?");
@@ -72,12 +75,8 @@ function calculateWorkTime (start, end) {
 };
 
 function toggleActiveCheckIn() {
-    const checkInSection = document.querySelector(".check-in");
-    if(checkInSection.classList.contains("active")) {
-        checkInSection.classList.remove("active");
-    } else {
-        checkInSection.classList.add("active");
-    }
+    const classList = document.querySelector(".check-in").classList;
+    classList.contains("active") ? classList.remove("active") : classList.add("active");
 }
 
 //eventlisteners for buttons
